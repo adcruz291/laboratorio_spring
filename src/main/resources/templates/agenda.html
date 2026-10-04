@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::title}, ~{::content})}">
+<head>
+  <title th:text="'Agenda de ' + ${user.username}">Agenda</title>
+</head>
+<body>
+<th:block th:fragment="content">
+<h1 th:text="'Agenda de ' + ${user.username}">Agenda</h1>
+<p><a href="/logout">Cerrar sesión</a></p>
+
+<h2>Nuevo contacto</h2>
+<form class="d-grid gap-2 mb-4" style="max-width: 360px;" method="post" action="/agenda">
+  <input class="form-control" name="nombre" placeholder="Nombre" required>
+  <input class="form-control" name="telefono" placeholder="Teléfono" required>
+  <input class="form-control" name="email" type="email" placeholder="Email (opcional)">
+  <button class="btn btn-primary" type="submit">Agregar</button>
+</form>
+
+<h2>Contactos</h2>
+<table class="table table-striped">
+  <thead><tr><th>Nombre</th><th>Teléfono</th><th>Email</th></tr></thead>
+  <tbody>
+    <tr th:each="c : ${contactos}"><td th:text="${c.nombre}"></td><td th:text="${c.telefono}"></td><td th:text="${c.email}"></td></tr>
+    <tr th:if="${#lists.isEmpty(contactos)}"><td colspan="3">Aún no tienes contactos.</td></tr>
+  </tbody>
+</table>
+</th:block>
+</body>
+</html>

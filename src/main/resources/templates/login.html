@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: layout(~{::title}, ~{::content})}">
+<head>
+  <title>Acceso · Mi Agenda</title>
+</head>
+<body>
+<th:block th:fragment="content">
+<h1>Mi Agenda</h1>
+<p class="alert alert-danger" th:if="${error}" th:text="${error}"></p>
+
+<h2>Iniciar sesión</h2>
+<form class="d-grid gap-2 mb-4" style="max-width: 360px;" method="post" action="/login">
+  <input class="form-control" name="username" placeholder="Usuario" required>
+  <input class="form-control" name="password" type="password" placeholder="Contraseña" required>
+  <button class="btn btn-primary" type="submit">Entrar</button>
+</form>
+
+<h2>Registrarse</h2>
+<form class="d-grid gap-2 mb-4" style="max-width: 360px;" method="post" action="/registro">
+  <input class="form-control" name="username" placeholder="Usuario" required>
+  <input class="form-control" name="password" type="password" placeholder="Contraseña" required>
+  <button class="btn btn-success" type="submit">Crear cuenta</button>
+</form>
+</th:block>
+</body>
+</html>
